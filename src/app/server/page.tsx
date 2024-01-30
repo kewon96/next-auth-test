@@ -6,7 +6,12 @@ import UserCard from "@/app/components/UserCard";
 export default async function ServerPage() {
 	const session = await getServerSession(options);
 
-	if(!session) redirect('/api/auth/signin?callbackUrl=/server');
+	debugger
+	const [clientId] = options.providers;
+	console.log(clientId)
+
+	// if(!session) redirect('https://github.com/login/oauth/authorize?client_id=Iv1.8472279bf722feff');
+	if(!session) redirect(`https://github.com/login/oauth/authorize?client_id=${clientId}`);
 
 	return (
 		<section className={'flex flex-col gap-6'}>
